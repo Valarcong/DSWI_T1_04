@@ -1,6 +1,6 @@
 # Pregunta 1, parte 2: gimnasio
 
-Rama local: `feat/Pregunta1-parte2`.
+Rama local: `Pregunta1-parte2`.
 
 ## Ejecutar en esta computadora
 
