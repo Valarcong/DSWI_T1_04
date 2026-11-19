@@ -1,0 +1,22 @@
+﻿@model DSWI_T1_04.Dtos.RegistrarClienteDto
+
+<div class="container mt-5">
+    <h1 class="text-center">Editar Cliente</h1>
+
+    <form asp-action="Edit" method="post" class="mt-4">
+        <input type="hidden" asp-for="clienteid" />
+
+        <div class="mb-3">
+            <label for="Nombre" class="form-label">Nombre</label>
+            <input type="text" asp-for="nombre" class="form-control" id="Nombre" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="CorreoElectronico" class="form-label">Correo Electrónico</label>
+            <input type="email" asp-for="correoelectronico" class="form-control" id="CorreoElectronico" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <a href="/Cliente" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

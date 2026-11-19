@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DSWI_T1_04.Models.Pedido>
+
+<div class="container mt-5">
+    <h1 class="text-center">Lista de Pedidos</h1>
+
+    <a href="/Pedido/Create" class="btn btn-primary">
+        Registrar Pedido
+    </a>
+    <hr />
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Monto</th>
+                <th>Estado</th>
+                <th>Cliente ID</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pedido in Model)
+            {
+                <tr>
+                    <td>@pedido.PedidoId</td>
+                    <td>@pedido.FechaPedido.ToString("dd/MM/yyyy")</td>
+                    <td>@pedido.Monto.ToString("N2")</td>
+                    <td>@pedido.Estado</td>
+                    <td>@pedido.ClienteId</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Pedido", new { id = pedido.PedidoId })"
+                           class="btn btn-sm btn-warning">
+                            Editar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
