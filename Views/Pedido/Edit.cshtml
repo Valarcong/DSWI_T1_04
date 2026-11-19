@@ -1,0 +1,50 @@
+﻿@model DSWI_T1_04.Dtos.RegistrarPedidoDto
+
+<div class="container mt-5">
+    <h1 class="text-center">Editar Pedido</h1>
+
+    <form asp-action="Edit" method="post" class="mt-4">
+
+        <input type="hidden" asp-for="pedidoid" />
+
+        <div class="mb-3">
+            <label class="form-label">Fecha del Pedido</label>
+            <input type="date" asp-for="fechapedido"
+                   class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Monto</label>
+            <input type="number" asp-for="monto"
+                   class="form-control" step="0.01" min="0.01" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Estado</label>
+            <select asp-for="estado" class="form-select" required>
+                <option value="Pendiente">Pendiente</option>
+                <option value="Entregado">Entregado</option>
+                <option value="Cancelado">Cancelado</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Cliente</label>
+            <select asp-for="clienteid" class="form-select" required>
+                <option value="">-- Seleccione Cliente --</option>
+                @foreach (var cliente in ViewBag.Clientes)
+                {
+                    <option value="@cliente.ClienteId">
+                        @cliente.Nombre
+                    </option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Guardar Cambios
+        </button>
+        <a href="/Pedido" class="btn btn-secondary">Cancelar</a>
+
+    </form>
+</div>
