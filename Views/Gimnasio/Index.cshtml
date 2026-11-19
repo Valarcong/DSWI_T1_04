@@ -1,0 +1,49 @@
+@model DSWI_T1_04.ViewModels.GimnasioViewModel
+@{
+    ViewData["Title"] = "Membresía de gimnasio";
+}
+
+<div class="container mt-4">
+    <h1>Membresía de gimnasio</h1>
+    <p>Ingrese la edad del cliente y los meses contratados para calcular el total a pagar.</p>
+
+    <form asp-controller="Gimnasio" asp-action="Index" method="post" class="mt-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="Datos.Edad" class="form-label">Edad del cliente</label>
+            <input asp-for="Datos.Edad" type="number" min="0" step="1" class="form-control" />
+            <span asp-validation-for="Datos.Edad" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Datos.Meses" class="form-label">Meses contratados</label>
+            <input asp-for="Datos.Meses" type="number" min="1" step="1" class="form-control" aria-describedby="descuentos" />
+            <span asp-validation-for="Datos.Meses" class="text-danger"></span>
+            <div id="descuentos" class="form-text">Descuentos: 3 meses, 5 %; 6 meses, 10 %; 12 meses, 20 %. Otras duraciones no tienen descuento.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Calcular membresía</button>
+        <a asp-action="Index" class="btn btn-secondary">Limpiar</a>
+    </form>
+
+    @if (Model.Calculado)
+    {
+        <section class="mt-4" aria-labelledby="resultado">
+            <h2 id="resultado">Resultado</h2>
+            <dl class="row">
+                <dt class="col-sm-5">Tarifa base mensual</dt>
+                <dd class="col-sm-7">$ @Model.TarifaBase.ToString("F2")</dd>
+                <dt class="col-sm-5">Meses contratados</dt>
+                <dd class="col-sm-7">@Model.Datos.Meses</dd>
+                <dt class="col-sm-5">Subtotal</dt>
+                <dd class="col-sm-7">$ @Model.Subtotal.ToString("F2")</dd>
+                <dt class="col-sm-5">Descuento aplicado (@Model.PorcentajeDescuento.ToString("0") %)</dt>
+                <dd class="col-sm-7">$ @Model.Descuento.ToString("F2")</dd>
+                <dt class="col-sm-5">Total a pagar</dt>
+                <dd class="col-sm-7"><strong>$ @Model.Total.ToString("F2")</strong></dd>
+            </dl>
+        </section>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
